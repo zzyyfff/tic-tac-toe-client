@@ -16,9 +16,9 @@
 
 ### Wireframes - FIRST DRAFT
 #### Mobile version
-![Tic Tac Toe - mobile wireframe](https://i.imgur.com/b68mnCm.jpg "Tic Tac Toe - mobile wireframe"){:height="50%" width="50%"}
+![Tic Tac Toe - mobile wireframe](https://i.imgur.com/b68mnCm.jpg "Tic Tac Toe - mobile wireframe")
 #### Desktop version
-![Tic Tac Toe - desktop wireframe](https://i.imgur.com/GOjCzei.jpg "Tic Tac Toe - desktop wireframe"){:height="50%" width="50%"}
+![Tic Tac Toe - desktop wireframe](https://i.imgur.com/GOjCzei.jpg "Tic Tac Toe - desktop wireframe")
 
 ### First draft of user stories:
 + As a TTT game user, I want to have a game board to play in
