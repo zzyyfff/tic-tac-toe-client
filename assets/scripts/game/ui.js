@@ -6,6 +6,10 @@ const cellOccupiedAlert = function () {
   createFeedback(`You may not play in an occupied cell`, `warning`, 4000)
 }
 
+const gameOver = function () {
+  createFeedback(`Game is already over. Please start a new game! ^_^`, `danger`, 4000)
+}
+
 const createFeedback = function (feedbackText, alertStyle, delay) {
   $('.user-feedback').html(`<div id="feedback" class="alert alert-${alertStyle}">${feedbackText}</div>`)
 
@@ -72,6 +76,7 @@ const displayTurns = function () {
 
 module.exports = {
   cellOccupiedAlert,
+  gameOver,
   fixSquares,
   renderGame
 }

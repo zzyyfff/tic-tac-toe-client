@@ -22,7 +22,7 @@ const onGameCellClick = function (event) {
   } else if (!currentGame.over) {
     ui.cellOccupiedAlert()
   } else {
-    console.log('Game is over')
+    ui.gameOver()
   }
 }
 
