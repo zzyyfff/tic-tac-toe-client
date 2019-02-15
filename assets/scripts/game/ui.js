@@ -11,8 +11,6 @@ const renderGame = game => {
   })
 }
 
-// $('#' + event.target.id).text('O')
-
 module.exports = {
   fixSquares,
   renderGame

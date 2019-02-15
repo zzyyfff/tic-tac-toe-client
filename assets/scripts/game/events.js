@@ -14,7 +14,7 @@ const onStartNewGame = function (event) {
 const onGameCellClick = function (event) {
   const currentGame = store.game
 
-  if (!currentGame.over && gameLogic.gameCellClick(event, currentGame)) {
+  if (!currentGame.over && gameLogic.gameCellPlay(event, currentGame)) {
     ui.renderGame(currentGame)
   } else if (!currentGame.over) {
     console.log('You may not play in an occupied cell')
