@@ -11,27 +11,28 @@ const Game = function (gameId, playerXId, playerXEmail) {
     email: playerXEmail
   }
   this.player_o = ''
+  makePlayerXTurn()
 }
 
 const decideWinState = (game) => {
-  let winner = ''
-
   // check if a win condition is met by 'x' or 'o'
   // or if the game is a tie game
   if (isGameWinner('x', game)) {
-    winner = 'x'
     game.over = true
+    return 'x'
   } else if (isGameWinner('o', game)) {
-    winner = 'o'
     game.over = true
+    return 'o'
   } else if (everyCellFilled(game)) {
-    winner = 'tie'
     game.over = true
+    return 'tie'
+  } else {
+    return ''
   }
 
-  if (winner !== '') {
-    console.log('Winner is ?', winner, 'On the line', store.winningLine)
-  }
+  // if (winner !== '') {
+  //   console.log('Winner is ?', winner, 'On the line', store.winningLine)
+  // }
 }
 
 const isGameWinner = function (playerLetter, game) {
@@ -63,30 +64,35 @@ const everyCellFilled = function (game) {
   return game.cells.every(element => element !== '')
 }
 
-const gameCellPlay = (event, game) => {
-  const cell = +event.target.id
-
-  // if the cell is empty, add play to cells array,
-  // change turns, and return true.
-  // Otherwise, return false
+const gamePlayInCell = (cell, game) => {
+  // if the cell is empty, play in cell
   if (game.cells[cell] === '') {
-    if (store.playerXTurn) {
+    if (store.playerXTurn) { // if X's turn
       game.cells[cell] = 'x'
-      store.playerXTurn = false
-      store.playerOTurn = true
+      makePlayerOTurn()
       return true
-    } else if (store.playerOTurn) {
+    } else if (store.playerOTurn) { // if O's turn
       game.cells[cell] = 'o'
-      store.playerOTurn = false
-      store.playerXTurn = true
+      makePlayerXTurn()
       return true
-    } else {
-      return false
     }
+  } else { // if cell is already filled
+    return false
   }
 }
+
+const makePlayerXTurn = function () {
+  store.playerOTurn = false
+  store.playerXTurn = true
+}
+
+const makePlayerOTurn = function () {
+  store.playerXTurn = false
+  store.playerOTurn = true
+}
+
 module.exports = {
   Game,
   decideWinState,
-  gameCellPlay
+  gamePlayInCell
 }

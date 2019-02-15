@@ -6,23 +6,24 @@ const store = require('../store')
 
 const onStartNewGame = function (event) {
   store.game = new gameLogic.Game(0, 0, 'test@user.com')
-  store.playerXTurn = true
-  store.playerOTurn = false
   ui.renderGame(store.game)
 }
 
 const onGameCellClick = function (event) {
   const currentGame = store.game
+  const cell = +event.target.id
 
-  if (!currentGame.over && gameLogic.gameCellPlay(event, currentGame)) {
-    ui.renderGame(currentGame)
+  // attempt to play in clicked cell
+  if (!currentGame.over && gameLogic.gamePlayInCell(cell, currentGame)) {
+    // if a valid play is made,
+    // check for winner and re-render game
+    const winner = gameLogic.decideWinState(currentGame)
+    ui.renderGame(currentGame, winner)
   } else if (!currentGame.over) {
-    console.log('You may not play in an occupied cell')
+    ui.cellOccupiedAlert()
   } else {
     console.log('Game is over')
   }
-
-  gameLogic.decideWinState(currentGame)
 }
 
 const addHandlers = () => {
