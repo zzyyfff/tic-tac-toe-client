@@ -1,5 +1,6 @@
 $player-x-background-color: $warm-sky-color;
 $player-o-background-color: $peachy-color;
+$auth-form-background-color: $paper-white-color;
 @media (min-width: 768px) and (max-width: 9000px) {
   .container {
     width: 768px;
@@ -12,13 +13,74 @@ $player-o-background-color: $peachy-color;
   justify-content: flex-start;
 }
 
-.blue-dots {
-  border: dotted blue 1px;
+.testing-border {
+  border: dotted $testing-blue 1px;
 }
 
 .game-board {
   display: flex;
   flex-wrap: wrap;
+}
+
+.initial-auth-form {
+  align-items: center;
+  background-color: $auth-form-background-color;
+  display: flex;
+  height: 100%;
+  justify-content: center;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  z-index: 10;
+
+  > .sign-in-div {
+    align-items: center;
+    background-color: $auth-form-background-color;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    justify-content: center;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    z-index: 20;
+
+    > form {
+      align-items: flex-end;
+      display: flex;
+      flex-direction: column;
+
+      > label {
+        align-self: flex-start;
+      }
+    }
+  }
+
+  > .sign-up-div {
+    align-items: center;
+    background-color: $auth-form-background-color;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    justify-content: center;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    z-index: 15;
+
+    > form {
+      align-items: flex-end;
+      display: flex;
+      flex-direction: column;
+
+      > label {
+        align-self: flex-start;
+      }
+    }
+  }
 }
 
 .game-cell {

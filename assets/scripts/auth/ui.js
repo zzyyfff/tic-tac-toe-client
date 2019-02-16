@@ -14,11 +14,13 @@ const createFeedback = function (feedbackText, alertStyle, delay) {
 
 const signUpSuccess = function (responseData) {
   createFeedback(`Successfully signed up!`, `success`, 4000)
+  fadeInSignIn()
 }
 
 const signInSuccess = function (responseData) {
   store.user = responseData.user
-  createFeedback(`Successfully signed in!`, `primary`, 40)
+  createFeedback(`Successfully signed in!`, `primary`, 400)
+  fadeOutAuth()
 }
 
 const changePasswordSuccess = function (responseData) {
@@ -28,6 +30,7 @@ const changePasswordSuccess = function (responseData) {
 const signOutSuccess = function (responseData) {
   store.user = null
   createFeedback(`Successfully signed out!`, `dark`, 4000)
+  fadeInAuth()
 }
 
 const failure = function (responseData) {
@@ -36,11 +39,29 @@ const failure = function (responseData) {
   createFeedback(`Someting went wrong; please try again.`, `danger`, 4000)
 }
 
+const fadeOutSignIn = function () {
+  $('.sign-in-div').fadeOut(300)
+}
+
+const fadeInSignIn = function () {
+  $('.sign-in-div').fadeIn(300)
+}
+
+const fadeOutAuth = function () {
+  $('.initial-auth-form').fadeOut(300)
+}
+
+const fadeInAuth = function () {
+  $('.initial-auth-form').fadeIn(300)
+}
+
 module.exports = {
   signUpSuccess,
   signInSuccess,
   changePasswordSuccess,
   signOutSuccess,
   createFeedback,
+  fadeOutSignIn,
+  fadeInSignIn,
   failure
 }

@@ -17,19 +17,6 @@
   <h1>tic tac toe</h1>
   <div class="user-feedback"></div>
   <div class="authentication-forms">
-    <form id="sign-up-form">
-      <label>Sign up:</label>
-      <input name="credentials[email]" required type="email" placeholder="Email Here" />
-      <input name="credentials[password]" required type="password" placeholder="Password Here" />
-      <input name="credentials[password_confirmation]" required type="password" placeholder="Confirm Password Here" />
-      <input type="submit" value="Sign Up!" />
-    </form>
-    <form id="sign-in-form">
-      <label>Sign in:</label>
-      <input name="credentials[email]" required type="email" placeholder="Email Here" />
-      <input name="credentials[password]" required type="password" placeholder="Password Here" />
-      <input type="submit" value="Sign In!" />
-    </form>
     <form id="change-password-form">
       <label>Change Password:</label>
       <input name="passwords[old]" required type="password" placeholder="Old Password" />
@@ -41,13 +28,34 @@
       <input type="submit" value="Sign out!" />
     </form>
   </div>
-  <!-- State Game Area -->
+  <!-- Start Game Area -->
   <div class="container">
     <div class="row">
-      <div class="blue-dots d-none d-md-block col-md-2">
+      <div class="testing-border d-none d-md-block col-md-2">
         <div class="player-x-status player-area-content">Player X</div>
       </div>
       <div class="game-board col-12 col-md-8">
+        <div class="initial-auth-form">
+          <div class="sign-in-div">
+            <form id="sign-in-form">
+              <label>Sign in to Tic Tac Toe</label>
+              <input name="credentials[email]" required type="email" placeholder="Email Here" />
+              <input name="credentials[password]" required type="password" placeholder="Password Here" />
+              <input class="col-6" type="submit" value="Sign In!" />
+            </form>
+            <small class="form-text text-muted">No account yet? <a id="register-reveal" href="#">Register for free!</a></small>
+          </div>
+          <div class="sign-up-div">
+            <form id="sign-up-form">
+              <label>Sign up for Tic Tac Toe</label>
+              <input name="credentials[email]" required type="email" placeholder="Email Here" />
+              <input name="credentials[password]" required type="password" placeholder="Password Here" />
+              <input name="credentials[password_confirmation]" required type="password" placeholder="Confirm Password" />
+              <input type="submit" value="Sign Up!" />
+            </form>
+            <small class="form-text text-muted">Already have an account? <a id="sign-in-reveal" href="#">Sign in.</a></small>
+          </div>
+        </div>
         <div class="game-cell square border-bottom border-right border-secondary" id="0"></div>
         <div class="game-cell square border border-top-0 border-secondary" id="1"></div>
         <div class="game-cell square border-bottom border-left border-secondary" id="2"></div>
@@ -58,21 +66,21 @@
         <div class="game-cell square border border-bottom-0 border-secondary" id="7"></div>
         <div class="game-cell square border-top border-left border-secondary" id="8"></div>
       </div>
-      <div class="blue-dots d-none d-md-block col-md-2">
+      <div class="testing-border d-none d-md-block col-md-2">
         <div class="player-o-status player-area-content">Player O</div>
       </div>
     </div>
     <div class="row">
-      <div class="blue-dots d-block d-md-none col-6">
+      <div class="testing-border d-block d-md-none col-6">
         <div class="player-x-status player-area-content">Player X</div>
       </div>
-      <div class="blue-dots d-block d-md-none col-6">
+      <div class="testing-border d-block d-md-none col-6">
         <div class="player-o-status player-area-content">Player O</div>
       </div>
     </div>
     <div class="row">
       <div class="d-none d-md-block col-md-3"></div>
-      <div class="blue-dots col-12 col-md-6">
+      <div class="testing-border col-12 col-md-6">
         <div class="game-status">No current game yet. Please start one.</div>
       </div>
       <div class="d-none d-md-block col-md-3"></div>
@@ -80,7 +88,7 @@
     <div class="row">
       <div class="d-none d-md-block col-md-8"></div>
       <div class="d-block d-md-none col-8"></div>
-      <div class="blue-dots col-4 col-md-4">
+      <div class="testing-border col-4 col-md-4">
         <div class="start-new-game">Start A New Game!</div>
       </div>
       <div class="d-none d-md-block col-md-3"></div>
