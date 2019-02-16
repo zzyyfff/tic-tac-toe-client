@@ -2,17 +2,17 @@
 
 const store = require('../store')
 
-const Game = function (gameId, playerXId, playerXEmail) {
-  this.id = gameId
-  this.cells = ['', '', '', '', '', '', '', '', '']
-  this.over = false
-  this.player_x = {
-    id: playerXId,
-    email: playerXEmail
-  }
-  this.player_o = ''
-  makePlayerXTurn()
-}
+// const Game = function (gameId, playerXId, playerXEmail) {
+//   this.id = gameId
+//   this.cells = ['', '', '', '', '', '', '', '', '']
+//   this.over = false
+//   this.player_x = {
+//     id: playerXId,
+//     email: playerXEmail
+//   }
+//   this.player_o = ''
+//   makePlayerXTurn()
+// }
 
 const decideWinState = (game) => {
   // check if a win condition is met by 'x' or 'o'
@@ -29,10 +29,6 @@ const decideWinState = (game) => {
   } else {
     return ''
   }
-
-  // if (winner !== '') {
-  //   console.log('Winner is ?', winner, 'On the line', store.winningLine)
-  // }
 }
 
 const isGameWinner = function (playerLetter, game) {
@@ -64,7 +60,10 @@ const everyCellFilled = function (game) {
   return game.cells.every(element => element !== '')
 }
 
-const gamePlayInCell = (cell, game) => {
+const playMoveInCell = function (cell, game) {
+  // allow new game creation once a move has been attempted
+  store.readyToAcceptNewGame = true
+
   // if the cell is empty, play in cell
   if (game.cells[cell] === '') {
     if (store.playerXTurn) { // if X's turn
@@ -92,7 +91,6 @@ const makePlayerOTurn = function () {
 }
 
 module.exports = {
-  Game,
   decideWinState,
-  gamePlayInCell
+  playMoveInCell
 }

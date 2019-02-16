@@ -6,8 +6,27 @@ const cellOccupiedAlert = function () {
   createFeedback(`You may not play in an occupied cell`, `warning`, 4000)
 }
 
+const currentGameIsUntouchedFeedback = function () {
+  createFeedback(`New game has already been created; go ahead and play!`, `secondary`, 4000)
+}
+
 const gameOver = function () {
   createFeedback(`Game is already over. Please start a new game! ^_^`, `danger`, 4000)
+}
+
+const newGameSuccess = function (responseData) {
+  createFeedback(`New Game Created`, `success`, 1000)
+  store.game = responseData.game
+  store.playerOTurn = false
+  store.playerXTurn = true
+  store.readyToAcceptNewGame = false
+  renderGame(store.game)
+}
+
+const updateGameSuccess = function (responseData) {
+  createFeedback(`Successful Play`, `danger`, 100)
+  store.game = responseData.game
+  renderGame(store.game)
 }
 
 const createFeedback = function (feedbackText, alertStyle, delay) {
@@ -74,9 +93,19 @@ const displayTurns = function () {
   }
 }
 
+const failure = function (responseData) {
+  console.log('Error message: ', responseData)
+
+  createFeedback(`Someting went wrong; please try again.`, `danger`, 4000)
+}
+
 module.exports = {
   cellOccupiedAlert,
+  currentGameIsUntouchedFeedback,
   gameOver,
   fixSquares,
-  renderGame
+  renderGame,
+  newGameSuccess,
+  updateGameSuccess,
+  failure
 }

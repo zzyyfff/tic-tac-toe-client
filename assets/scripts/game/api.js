@@ -3,14 +3,33 @@
 const config = require('../config')
 const store = require('../store')
 
-const createExample = function (example) {
+const createGame = function () {
   return $.ajax({
-    url: `${config.apiUrl}/examples/`,
+    url: `${config.apiUrl}/games`,
     method: 'POST',
     headers: {
       'Authorization': 'Token token=' + store.user.token
     },
-    data: {example}
+    data: '{}'
+  })
+}
+
+const updateExample = function (game, cell) {
+  return $.ajax({
+    url: `${config.apiUrl}/games/${game.id}`,
+    method: 'PATCH',
+    headers: {
+      'Authorization': 'Token token=' + store.user.token
+    },
+    data: {
+      game: {
+        cell: {
+          index: cell,
+          value: game.cells[cell]
+        },
+        over: game.over
+      }
+    }
   })
 }
 
@@ -44,25 +63,10 @@ const destroyExample = function (formData) {
   })
 }
 
-const updateExample = function (formData) {
-  return $.ajax({
-    url: `${config.apiUrl}/examples/${formData.example.id}`,
-    method: 'PATCH',
-    headers: {
-      'Authorization': 'Token token=' + store.user.token
-    },
-    data: {
-      example: {
-        text: formData.example.text
-      }
-    }
-  })
-}
-
 module.exports = {
-  createExample,
   getExamples,
   getExample,
   destroyExample,
-  updateExample
+  updateExample,
+  createGame
 }

@@ -18,7 +18,7 @@ const signUpSuccess = function (responseData) {
 
 const signInSuccess = function (responseData) {
   store.user = responseData.user
-  createFeedback(`Successfully signed in!`, `primary`, 4000)
+  createFeedback(`Successfully signed in!`, `primary`, 40)
 }
 
 const changePasswordSuccess = function (responseData) {
