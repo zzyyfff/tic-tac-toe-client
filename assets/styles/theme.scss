@@ -1,6 +1,8 @@
 $player-x-background-color: $warm-sky-color;
 $player-o-background-color: $peachy-color;
+$dropdown-text-color: $charcoal-grey-color;
 $auth-form-background-color: $paper-white-color;
+$small-form-text: $muted-color;
 @media (min-width: 768px) and (max-width: 9000px) {
   .container {
     width: 768px;
@@ -15,6 +17,10 @@ $auth-form-background-color: $paper-white-color;
 
 .testing-border {
   border: dotted $testing-blue 1px;
+}
+
+.dropdown-toggle {
+  color: $dropdown-text-color;
 }
 
 .game-board {
@@ -86,6 +92,7 @@ $auth-form-background-color: $paper-white-color;
 .game-cell {
   align-items: center;
   display: flex;
+  font-size: 25vmin;
   justify-content: center;
 }
 
@@ -113,7 +120,19 @@ $auth-form-background-color: $paper-white-color;
   background-color: $player-x-background-color;
 }
 
+.muted {
+  color: $muted-color;
+}
+
+.red {
+  color: $red-damask-color;
+}
+
 .square {
   border: 0;
   width: percentage(1/3);
+}
+
+.welclome-dropdown {
+  display: none;
 }

@@ -25,7 +25,7 @@ const onChangePassword = function (event) {
   const formData = getFormFields(event.target)
   api.changePassword(formData)
     .then(ui.changePasswordSuccess)
-    .catch(ui.failure)
+    .catch(ui.changePasswordFailure)
 }
 
 const onSignOut = function (event) {
@@ -45,13 +45,18 @@ const onSignInReveal = function (event) {
   ui.fadeInSignIn()
 }
 
+const onPassChangeClose = function (event) {
+  ui.resetPassChangeForm($('#change-password-form'))
+}
+
 const addHandlers = () => {
   $('#sign-up-form').on('submit', onSignUp)
   $('#sign-in-form').on('submit', onSignIn)
   $('#change-password-form').on('submit', onChangePassword)
-  $('#sign-out-form').on('submit', onSignOut)
+  $('#sign-out').on('click', onSignOut)
   $('#register-reveal').on('click', onRegisterReveal)
   $('#sign-in-reveal').on('click', onSignInReveal)
+  $('#pass-change-close').on('click', onPassChangeClose)
 }
 
 module.exports = {

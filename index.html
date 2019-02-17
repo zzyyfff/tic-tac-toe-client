@@ -14,20 +14,44 @@
 </head>
 
 <body>
-  <h1>tic tac toe</h1>
-  <div class="user-feedback"></div>
-  <div class="authentication-forms">
-    <form id="change-password-form">
-      <label>Change Password:</label>
-      <input name="passwords[old]" required type="password" placeholder="Old Password" />
-      <input name="passwords[new]" required type="password" placeholder="New Password" />
-      <input type="submit" value="Change Password" />
-    </form>
-    <form id="sign-out-form">
-      <label>Sign Out:</label>
-      <input type="submit" value="Sign out!" />
-    </form>
+  <nav class="navbar navbar-default navbar-static-top navbar-light bg-light">
+    <a class="nav-item navbar-brand" href="#">tic tac toe</a>
+    <ul class="nav">
+      <li class="nav-item dropdown ml-auto welclome-dropdown">
+        <a id="welcome-name" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></a>
+        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item nav-link" id="change-password-request" href="#" data-toggle="modal" data-target="#formModalCenter">Change Password</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" id="sign-out" href="#">Sign Out</a>
+        </div>
+      </li>
+    </ul>
+  </nav>
+  <!-- Modal -->
+  <div class="modal fade" id="formModalCenter" tabindex="-1" role="dialog" aria-labelledby="formModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <form id="change-password-form">
+          <div class="modal-header">
+            <label for="inputTextForConsole" class="modal-title" id="formModalCenterTitle">Change password:</label>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div class="form-group">
+              <input name="passwords[old]" required type="password" placeholder="Enter Old Password" /><br>
+              <input name="passwords[new]" required type="password" placeholder="Enter New Password" />
+              <small id="pass-change-help" class="form-text muted">Enter both your old and new passwords to make the change.<br>&nbsp;</small>
+              <button id="pass-change-close" type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <button type="submit" class="btn btn-primary">Change Password</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
   </div>
+  <!-- End Modal -->
   <!-- Start Game Area -->
   <div class="container">
     <div class="row">
@@ -70,6 +94,7 @@
         <div class="player-o-status player-area-content">Player O</div>
       </div>
     </div>
+    <div class="user-feedback"></div>
     <div class="row">
       <div class="testing-border d-block d-md-none col-6">
         <div class="player-x-status player-area-content">Player X</div>

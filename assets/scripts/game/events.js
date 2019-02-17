@@ -17,22 +17,26 @@ const onStartNewGame = function () {
 }
 
 const onGameCellClick = function (event) {
-  const game = store.game
-  const cell = +event.target.id
+  if (!store.game) {
+    ui.createFeedback(`Please start a new game`, `warning`, 2000)
+  } else {
+    const game = store.game
+    const cell = +event.target.id
 
-  // attempt to play in clicked cell
-  if (!game.over && gameLogic.playMoveInCell(cell, game)) {
+    // attempt to play in clicked cell
+    if (!game.over && gameLogic.playMoveInCell(cell, game)) {
     // if a valid move is made, check for winner, re-render game
     // and update API
-    const winner = gameLogic.decideWinState(game)
-    ui.renderGame(game, winner)
-    api.updateExample(game, cell)
-      .then(ui.updateGameSuccess)
-      .catch(ui.failure)
-  } else if (!game.over) {
-    ui.cellOccupiedAlert()
-  } else {
-    ui.gameOver()
+      const winner = gameLogic.decideWinState(game)
+      ui.renderGame(game, winner)
+      api.updateExample(game, cell)
+        .then(ui.updateGameSuccess)
+        .catch(ui.failure)
+    } else if (!game.over) {
+      ui.cellOccupiedAlert()
+    } else {
+      ui.gameOver()
+    }
   }
 }
 

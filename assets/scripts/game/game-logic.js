@@ -2,17 +2,17 @@
 
 const store = require('../store')
 
-// const Game = function (gameId, playerXId, playerXEmail) {
-//   this.id = gameId
-//   this.cells = ['', '', '', '', '', '', '', '', '']
-//   this.over = false
-//   this.player_x = {
-//     id: playerXId,
-//     email: playerXEmail
-//   }
-//   this.player_o = ''
-//   makePlayerXTurn()
-// }
+const Game = function (gameId, playerXId, playerXEmail) {
+  this.id = gameId
+  this.cells = ['', '', '', '', '', '', '', '', '']
+  this.over = false
+  this.player_x = {
+    id: playerXId,
+    email: playerXEmail
+  }
+  this.player_o = ''
+  makePlayerXTurn()
+}
 
 const decideWinState = (game) => {
   // check if a win condition is met by 'x' or 'o'
@@ -92,5 +92,6 @@ const makePlayerOTurn = function () {
 
 module.exports = {
   decideWinState,
-  playMoveInCell
+  playMoveInCell,
+  Game
 }

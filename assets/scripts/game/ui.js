@@ -51,7 +51,7 @@ const renderGame = function (game, winner) {
 
 const renderBoard = game => {
   game.cells.forEach((cell, index) => {
-    $('#' + index).text(cell)
+    $('#' + index).text(cell.toUpperCase())
   })
 }
 
@@ -107,5 +107,6 @@ module.exports = {
   renderGame,
   newGameSuccess,
   updateGameSuccess,
+  createFeedback,
   failure
 }
