@@ -12,7 +12,7 @@ $small-form-text: $muted-color;
 
 @media (orientation: landscape) {
   .game-board {
-    height: 100%;
+    width: 100vmin;
   }
 }
 
