@@ -8,6 +8,10 @@ $small-form-text: $muted-color;
   .container {
     width: 768px;
   }
+
+  .game-board {
+    width: 100vmin;
+  }
 }
 
 @media (orientation: landscape) {
