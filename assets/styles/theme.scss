@@ -3,9 +3,16 @@ $player-o-background-color: $peachy-color;
 $dropdown-text-color: $charcoal-grey-color;
 $auth-form-background-color: $paper-white-color;
 $small-form-text: $muted-color;
+
 @media (min-width: 768px) and (max-width: 9000px) {
   .container {
     width: 768px;
+  }
+}
+
+@media (orientation: landscape) {
+  .game-board {
+    width: 100vmin;
   }
 }
 
