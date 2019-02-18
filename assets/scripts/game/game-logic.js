@@ -93,5 +93,6 @@ const makePlayerOTurn = function () {
 module.exports = {
   decideWinState,
   playMoveInCell,
+  isGameWinner,
   Game
 }

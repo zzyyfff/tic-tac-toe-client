@@ -4,61 +4,62 @@ const store = require('../store')
 const gameLogic = require('../game/game-logic')
 const gameUi = require('../game/ui')
 
-const createFeedback = function (feedbackText, alertStyle, delay) {
-  $('.user-feedback').html(`<div id="feedback" class="alert alert-${alertStyle}">${feedbackText}</div>`)
+const createFeedback = function (feedbackText, delay) {
+  $('.auth-status').html(feedbackText)
+  $('.auth-status').fadeIn(300)
 
   setTimeout(() => {
-    $('#feedback').fadeTo(500, 0).slideUp(500, function () {
-      $(this).remove()
-    })
+    $('.auth-status').fadeOut(300)
   }, delay)
 }
 
 const signUpSuccess = function (responseData) {
-  createFeedback(`Successfully signed up!`, `success`, 4000)
+  createFeedback('Sign-up successfull.', 3000)
   fadeInSignIn()
 }
 
 const signInSuccess = function (responseData) {
   store.user = responseData.user
   const name = store.user.email.split('@', 1)
+  $('#winner').hide()
   $('#welcome-name').html(`Welcome, ${name[0]}!`)
+  gameUi.updateStats()
   fadeInWelcome()
-  createFeedback(`Successfully signed in!`, `primary`, 400)
   fadeOutAuth()
 }
 
 const changePasswordSuccess = function (responseData) {
   $('#formModalCenter').modal('hide')
-  createFeedback(`Successfully changed password!`, `info`, 4000)
+  createFeedback(`Successfully changed password.`, 3000)
 
-  $('#pass-change-help').removeClass('red')
+  $('#pass-change-help').removeClass('small-error')
   $('#pass-change-help').addClass('muted')
   $('#pass-change-help').html(`Enter both your old and new passwords to make the change.<br>&nbsp;`)
 }
 
 const changePasswordFailure = function (responseData) {
   $('#pass-change-help').removeClass('muted')
-  $('#pass-change-help').addClass('red')
+  $('#pass-change-help').addClass('small-error')
   $('#pass-change-help').html(`Incorrect Entry. Please enter your correct old and new passwords to make the change.<br>&nbsp;`)
 }
 
 const signOutSuccess = function (responseData) {
   store.user = null
-  createFeedback(`Successfully signed out!`, `dark`, 4000)
   fadeOutWelcome()
+  gameUi.fadeOutResetGameButton()
+  gameUi.fadeOutGameStatus()
   fadeInAuth()
+  $('#start-game-button').html('Start A New Game!')
+  setTimeout(gameUi.fadeInNewGameButton, 310)
 
-  // reset board
+  // reset board with blank game on sign-out
   const game = new gameLogic.Game(0, 0, 'dummy@game')
-  gameUi.renderGame(game, '')
+  gameUi.renderBoard(game)
   store.game = null
 }
 
 const failure = function (responseData) {
-  console.log('Error message: ', responseData)
-
-  createFeedback(`Someting went wrong; please try again.`, `danger`, 4000)
+  createFeedback(`Someting went wrong; please try again.`, 4000)
 }
 
 const fadeOutSignIn = function () {

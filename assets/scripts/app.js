@@ -12,4 +12,5 @@ const gameEvents = require('./game/events')
 $(() => {
   authEvents.addHandlers()
   gameEvents.addHandlers()
+  $('[data-toggle="tooltip"]').tooltip()
 })
