@@ -20,20 +20,26 @@
       <li class="nav-item dropdown ml-auto welclome-dropdown">
         <a id="welcome-name" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></a>
         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item nav-link" id="change-password-request" href="#" data-toggle="modal" data-target="#formModalCenter">Change Password</a>
+          <h4 class="dropdown-header">Games Stats:</h4>
+          <h6 id="games-completed" class="dropdown-header"></h6>
+          <h6 id="games-x-won" class="dropdown-header"></h6>
+          <h6 id="games-o-won" class="dropdown-header"></h6>
+          <h6 id="games-tied" class="dropdown-header"></h6>
           <div class="dropdown-divider"></div>
+          <a class="dropdown-item" id="change-password-request" href="#" data-toggle="modal" data-target="#formModalCenter">Change Password</a>
           <a class="dropdown-item" id="sign-out" href="#">Sign Out</a>
         </div>
       </li>
     </ul>
   </nav>
-  <!-- Modal -->
+
+  <!-- Change Password Modal -->
   <div class="modal fade" id="formModalCenter" tabindex="-1" role="dialog" aria-labelledby="formModalCenterTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
       <div class="modal-content">
         <form id="change-password-form">
           <div class="modal-header">
-            <label for="inputTextForConsole" class="modal-title" id="formModalCenterTitle">Change password:</label>
+            <label for="Changing password" class="modal-title" id="formModalCenterTitle">Change password:</label>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
@@ -52,11 +58,10 @@
     </div>
   </div>
   <!-- End Modal -->
-  <!-- Start Game Area -->
+
   <div class="container">
     <div class="row">
-      <div class="testing-border d-none d-md-block col-md-2">
-        <div class="player-x-status player-area-content">Player X</div>
+      <div class="d-none d-md-block col-md-2">
       </div>
       <div class="game-board col-12 col-md-8">
         <div class="initial-auth-form">
@@ -80,41 +85,40 @@
             <small class="form-text text-muted">Already have an account? <a id="sign-in-reveal" href="#">Sign in.</a></small>
           </div>
         </div>
-        <div class="game-cell square border-bottom border-right border-secondary" id="0"></div>
-        <div class="game-cell square border border-top-0 border-secondary" id="1"></div>
-        <div class="game-cell square border-bottom border-left border-secondary" id="2"></div>
-        <div class="game-cell square border border-left-0 border-secondary" id="3"></div>
-        <div class="game-cell square border border-secondary" id="4"></div>
-        <div class="game-cell square border border-right-0 border-secondary" id="5"></div>
-        <div class="game-cell square border-top border-right border-secondary" id="6"></div>
-        <div class="game-cell square border border-bottom-0 border-secondary" id="7"></div>
-        <div class="game-cell square border-top border-left border-secondary" id="8"></div>
+        <div class="grey-out-game"></div>
+        <div class="start-new-game">
+          <div class="start-new-game-button-div">
+            <div id="winner" class="jumbotron display-2"></div>
+            <button id="start-game-button" type="button" class="reset-game btn btn-primary">Start A New Game!</button>
+          </div>
+        </div>
+        <div data-toggle="tooltip" data-placement="bottom" title="You may not play in an occupied cell" data-trigger="manual" class="game-cell square border-bottom border-right border-secondary" id="0"></div>
+        <div data-toggle="tooltip" data-placement="bottom" title="You may not play in an occupied cell" data-trigger="manual" class="game-cell square border border-top-0 border-secondary" id="1"></div>
+        <div data-toggle="tooltip" data-placement="bottom" title="You may not play in an occupied cell" data-trigger="manual" class="game-cell square border-bottom border-left border-secondary" id="2"></div>
+        <div data-toggle="tooltip" data-placement="bottom" title="You may not play in an occupied cell" data-trigger="manual" class="game-cell square border border-left-0 border-secondary" id="3"></div>
+        <div data-toggle="tooltip" data-placement="bottom" title="You may not play in an occupied cell" data-trigger="manual" class="game-cell square border border-secondary" id="4"></div>
+        <div data-toggle="tooltip" data-placement="bottom" title="You may not play in an occupied cell" data-trigger="manual" class="game-cell square border border-right-0 border-secondary" id="5"></div>
+        <div data-toggle="tooltip" data-placement="bottom" title="You may not play in an occupied cell" data-trigger="manual" class="game-cell square border-top border-right border-secondary" id="6"></div>
+        <div data-toggle="tooltip" data-placement="bottom" title="You may not play in an occupied cell" data-trigger="manual" class="game-cell square border border-bottom-0 border-secondary" id="7"></div>
+        <div data-toggle="tooltip" data-placement="bottom" title="You may not play in an occupied cell" data-trigger="manual" class="game-cell square border-top border-left border-secondary" id="8"></div>
       </div>
-      <div class="testing-border d-none d-md-block col-md-2">
-        <div class="player-o-status player-area-content">Player O</div>
+      <div class="d-none d-md-block col-md-2">
       </div>
     </div>
     <div class="user-feedback"></div>
     <div class="row">
-      <div class="testing-border d-block d-md-none col-6">
-        <div class="player-x-status player-area-content">Player X</div>
+      <div class="d-none d-md-block col-md-4"></div>
+      <div class="col-12 col-md-4">
+        <div class="game-status"></div>
+        <div class="auth-status alert alert-dark" role="alert"></div>
       </div>
-      <div class="testing-border d-block d-md-none col-6">
-        <div class="player-o-status player-area-content">Player O</div>
-      </div>
+      <div class="d-none d-md-block col-md-4"><button type="button" class="reset-game reset-game-button btn btn-primary">Reset Game</button></div>
     </div>
     <div class="row">
-      <div class="d-none d-md-block col-md-3"></div>
-      <div class="testing-border col-12 col-md-6">
-        <div class="game-status">No current game yet. Please start one.</div>
+      <div class="d-block col-8">
       </div>
-      <div class="d-none d-md-block col-md-3"></div>
-    </div>
-    <div class="row">
-      <div class="d-none d-md-block col-md-8"></div>
-      <div class="d-block d-md-none col-8"></div>
-      <div class="testing-border col-4 col-md-4">
-        <div class="start-new-game">Start A New Game!</div>
+      <div class="d-block d-md-none col-4">
+        <button type="button" class="reset-game reset-game-button btn btn-primary">Reset Game</button>
       </div>
       <div class="d-none d-md-block col-md-3"></div>
     </div>

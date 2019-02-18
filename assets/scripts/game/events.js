@@ -8,6 +8,7 @@ store.readyToAcceptNewGame = true
 
 const onStartNewGame = function () {
   if (store.readyToAcceptNewGame) {
+    store.winner = ''
     api.createGame()
       .then(ui.newGameSuccess)
       .catch(ui.failure)
@@ -25,15 +26,16 @@ const onGameCellClick = function (event) {
 
     // attempt to play in clicked cell
     if (!game.over && gameLogic.playMoveInCell(cell, game)) {
-    // if a valid move is made, check for winner, re-render game
-    // and update API
-      const winner = gameLogic.decideWinState(game)
-      ui.renderGame(game, winner)
-      api.updateExample(game, cell)
+    // if a valid move is made, check for winner and update API
+    // if API update is successfull,
+    // re-render board and update stats (within updateGameSuccess)
+      store.winner = gameLogic.decideWinState(game)
+      api.updateGame(game, cell)
         .then(ui.updateGameSuccess)
         .catch(ui.failure)
+      ui.fadeInResetGameButton()
     } else if (!game.over) {
-      ui.cellOccupiedAlert()
+      ui.cellOccupiedAlert(event.target.id)
     } else {
       ui.gameOver()
     }
@@ -44,7 +46,7 @@ const addHandlers = () => {
   $(window).resize(ui.fixSquares)
   $(document).ready(ui.fixSquares)
   $('.game-cell').on('click', onGameCellClick)
-  $('.start-new-game').on('click', onStartNewGame)
+  $('.reset-game').on('click', onStartNewGame)
 }
 
 module.exports = {

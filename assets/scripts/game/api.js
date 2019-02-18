@@ -14,7 +14,7 @@ const createGame = function () {
   })
 }
 
-const updateExample = function (game, cell) {
+const updateGame = function (game, cell) {
   return $.ajax({
     url: `${config.apiUrl}/games/${game.id}`,
     method: 'PATCH',
@@ -33,9 +33,9 @@ const updateExample = function (game, cell) {
   })
 }
 
-const getExamples = function () {
+const getCompletedGames = function () {
   return $.ajax({
-    url: `${config.apiUrl}/examples/`,
+    url: `${config.apiUrl}/games?over=true`,
     method: 'GET',
     headers: {
       'Authorization': 'Token token=' + store.user.token
@@ -64,9 +64,7 @@ const destroyExample = function (formData) {
 }
 
 module.exports = {
-  getExamples,
-  getExample,
-  destroyExample,
-  updateExample,
-  createGame
+  createGame,
+  updateGame,
+  getCompletedGames
 }

@@ -2,15 +2,13 @@ $player-x-background-color: $warm-sky-color;
 $player-o-background-color: $peachy-color;
 $dropdown-text-color: $charcoal-grey-color;
 $auth-form-background-color: $paper-white-color;
+$auth-form-background-color: $paper-white-color;
 $small-form-text: $muted-color;
-
+$small-form-error-text: $red-damask-color;
+$grey-out-game-color: $charcoal-grey-color;
 @media (min-width: 768px) and (max-width: 9000px) {
   .container {
     width: 768px;
-  }
-
-  .game-board {
-    width: 100vmin;
   }
 }
 
@@ -18,6 +16,10 @@ $small-form-text: $muted-color;
   display: flex;
   flex-wrap: wrap;
   justify-content: flex-start;
+}
+
+.auth-status {
+  display: none;
 }
 
 .testing-border {
@@ -33,6 +35,14 @@ $small-form-text: $muted-color;
   flex-wrap: wrap;
 }
 
+.muted {
+  color: $small-form-text;
+}
+
+.small-error {
+  color: $small-form-error-text;
+}
+
 .initial-auth-form {
   align-items: center;
   background-color: $auth-form-background-color;
@@ -43,7 +53,7 @@ $small-form-text: $muted-color;
   position: absolute;
   top: 0;
   width: 100%;
-  z-index: 10;
+  z-index: 40;
 
   > .sign-in-div {
     align-items: center;
@@ -56,7 +66,7 @@ $small-form-text: $muted-color;
     position: absolute;
     top: 0;
     width: 100%;
-    z-index: 20;
+    z-index: 50;
 
     > form {
       align-items: flex-end;
@@ -80,7 +90,7 @@ $small-form-text: $muted-color;
     position: absolute;
     top: 0;
     width: 100%;
-    z-index: 15;
+    z-index: 45;
 
     > form {
       align-items: flex-end;
@@ -117,25 +127,69 @@ $small-form-text: $muted-color;
   width: 100%;
 }
 
-.player-o-status {
+.player-o {
   background-color: $player-o-background-color;
 }
 
-.player-x-status {
+.player-x {
   background-color: $player-x-background-color;
 }
 
-.muted {
-  color: $muted-color;
+.reset-game-button {
+  display: none;
 }
 
-.red {
-  color: $red-damask-color;
+.grey-out-game {
+  background-color: $grey-out-game-color;
+  display: flex;
+  height: 100%;
+  left: 0;
+  opacity: (1 / 3);
+  position: absolute;
+  top: 0;
+  width: 100%;
+  z-index: 10;
+}
+
+.start-new-game {
+  align-items: center;
+  display: flex;
+  height: 100%;
+  justify-content: center;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  z-index: 15;
+
+  > .start-new-game-button-div {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    justify-content: center;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    z-index: 25;
+
+    > button {
+      opacity: 1;
+      z-index: 35;
+    }
+  }
 }
 
 .square {
   border: 0;
   width: percentage(1/3);
+}
+
+.arrow,
+.tooltip,
+.tooltip-inner {
+  opacity: .9;
 }
 
 .welclome-dropdown {

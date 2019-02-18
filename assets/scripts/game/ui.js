@@ -1,41 +1,97 @@
 'use strict'
 
 const store = require('../store')
+const gameLogic = require('./game-logic')
+const api = require('./api')
 
-const cellOccupiedAlert = function () {
-  createFeedback(`You may not play in an occupied cell`, `warning`, 4000)
+const cellOccupiedAlert = function (cellId) {
+  cellFeedback(cellId, 3000)
 }
 
 const currentGameIsUntouchedFeedback = function () {
-  createFeedback(`New game has already been created; go ahead and play!`, `secondary`, 4000)
+  createFeedback(`New game has already been created; go ahead and play!`, 4000)
 }
 
 const gameOver = function () {
-  createFeedback(`Game is already over. Please start a new game! ^_^`, `danger`, 4000)
+  createFeedback(`Game is already over. Please start a new game! ^_^`, 4000)
 }
 
 const newGameSuccess = function (responseData) {
-  createFeedback(`New Game Created`, `success`, 1000)
   store.game = responseData.game
   store.playerOTurn = false
   store.playerXTurn = true
   store.readyToAcceptNewGame = false
+  fadeOutNewGameButton()
+  fadeOutResetGameButton()
+  fadeInGameStatus()
+  $('#winner').html('')
   renderGame(store.game)
 }
 
 const updateGameSuccess = function (responseData) {
-  createFeedback(`Successful Play`, `danger`, 100)
   store.game = responseData.game
   renderGame(store.game)
+  if (store.winner !== '') {
+    declareWinner()
+    updateStats()
+  }
+}
+
+const declareWinner = function () {
+  if (store.winner === 'x') {
+    $('#winner').html('X wins!')
+  } else if (store.winner === 'o') {
+    $('#winner').html('O wins!')
+  } else if (store.winner === 'tie') {
+    $('#winner').html(`It's a tie!`)
+  }
+  $('#winner').show()
+  $('#start-game-button').html('Play again?')
+  fadeInNewGameButton()
+}
+
+const updateStats = function () {
+  if (store.user) {
+    api.getCompletedGames()
+      .then(getCompletedGamesSuccess)
+      .catch(failure)
+  }
+}
+
+const getCompletedGamesSuccess = function (responseData) {
+  $('.games-display').html('')
+
+  store.gamesStats = responseData.games.reduce((accum, game) => {
+    accum.completed++
+    if (gameLogic.isGameWinner('x', game)) {
+      accum.xWon++
+    } else if (gameLogic.isGameWinner('o', game)) {
+      accum.oWon++
+    } else {
+      accum.tied++
+    }
+    return accum
+  }, {completed: 0, xWon: 0, oWon: 0, tied: 0})
+
+  $('#games-completed').html(`${store.gamesStats.completed} games completed`)
+  $('#games-x-won').html(`${store.gamesStats.xWon} won by X`)
+  $('#games-o-won').html(`${store.gamesStats.oWon} won by O`)
+  $('#games-tied').html(`${store.gamesStats.tied} tied`)
+}
+
+const cellFeedback = function (cellId, delay) {
+  $('#' + cellId).tooltip('show')
+  setTimeout(() => {
+    $('#' + cellId).tooltip('hide')
+  }, delay)
 }
 
 const createFeedback = function (feedbackText, alertStyle, delay) {
-  $('.user-feedback').html(`<div id="feedback" class="alert alert-${alertStyle}">${feedbackText}</div>`)
+  $('.game-status').html(feedbackText)
+  $('.game-status').fadeIn(300)
 
   setTimeout(() => {
-    $('#feedback').fadeTo(500, 0).slideUp(500, function () {
-      $(this).remove()
-    })
+    $('.game-status').fadeOut(300)
   }, delay)
 }
 
@@ -57,46 +113,51 @@ const renderBoard = game => {
 
 const updateGameStatus = (game, winner) => {
   if (game.over) {
-    displayPlayerWinStatus(winner)
-    if (winner === 'tie') {
-      $('.game-status').text(`Game is a Tie! Play again?`)
-    } else {
-      $('.game-status').text(`Game is over... Play again?`)
-    }
+    $('.game-status').removeClass('player-x')
+    $('.game-status').removeClass('player-o')
+    $('.game-status').text(`Game has ended.`)
+    fadeOutResetGameButton()
   } else {
-    $('.game-status').text(`Game in progress...`)
-    displayTurns()
+    if (store.playerXTurn) {
+      $('.game-status').removeClass('player-o')
+      $('.game-status').addClass('player-x')
+      $('.game-status').text(`Player X's turn`)
+    } else if (store.playerOTurn) {
+      $('.game-status').removeClass('player-x')
+      $('.game-status').addClass('player-o')
+      $('.game-status').text(`Player O's turn`)
+    }
   }
 }
 
-const displayPlayerWinStatus = function (winner) {
-  if (winner === 'x') {
-    $('.player-x-status').text(`Player X Won!!`)
-    $('.player-o-status').text(`Player O Lost.`)
-  } else if (winner === 'o') {
-    $('.player-o-status').text(`Player O Won!!`)
-    $('.player-x-status').text(`Player X Lost.`)
-  } else if (winner === 'tie') {
-    $('.player-x-status').text(`Player X tied.`)
-    $('.player-o-status').text(`Player O tied.`)
-  }
+const fadeOutNewGameButton = function () {
+  $('.grey-out-game').fadeOut(300)
+  $('.start-new-game').fadeOut(300)
 }
 
-const displayTurns = function () {
-  if (store.playerXTurn) {
-    $('.player-x-status').text(`Player X's turn`)
-    $('.player-o-status').text(`Player O is waiting`)
-  }
-  if (store.playerOTurn) {
-    $('.player-o-status').text(`Player O's turn`)
-    $('.player-x-status').text(`Player X is waiting`)
-  }
+const fadeInNewGameButton = function () {
+  $('.grey-out-game').fadeIn(300)
+  $('.start-new-game').fadeIn(300)
+}
+
+const fadeOutResetGameButton = function () {
+  $('.reset-game-button').fadeOut(300)
+}
+
+const fadeInResetGameButton = function () {
+  $('.reset-game-button').fadeIn(300)
+}
+
+const fadeOutGameStatus = function () {
+  $('.game-status').fadeOut(300)
+}
+
+const fadeInGameStatus = function () {
+  $('.game-status').fadeIn(300)
 }
 
 const failure = function (responseData) {
-  console.log('Error message: ', responseData)
-
-  createFeedback(`Someting went wrong; please try again.`, `danger`, 4000)
+  createFeedback(`Someting went wrong; please try again.`, 4000)
 }
 
 module.exports = {
@@ -105,8 +166,15 @@ module.exports = {
   gameOver,
   fixSquares,
   renderGame,
+  renderBoard,
   newGameSuccess,
   updateGameSuccess,
+  getCompletedGamesSuccess,
   createFeedback,
+  updateStats,
+  fadeInNewGameButton,
+  fadeOutGameStatus,
+  fadeInResetGameButton,
+  fadeOutResetGameButton,
   failure
 }
