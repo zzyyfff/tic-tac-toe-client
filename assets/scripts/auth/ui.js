@@ -56,6 +56,7 @@ const signOutSuccess = function (responseData) {
   const game = new gameLogic.Game(0, 0, 'dummy@game')
   gameUi.renderBoard(game)
   store.game = null
+  store.readyToAcceptNewGame = true
 }
 
 const failure = function (responseData) {
