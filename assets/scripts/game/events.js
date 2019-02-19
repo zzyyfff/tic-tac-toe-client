@@ -11,7 +11,7 @@ const onStartNewGame = function () {
     store.winner = ''
     api.createGame()
       .then(ui.newGameSuccess)
-      .catch(ui.failure)
+      .catch(ui.newGameFailure)
   } else {
     ui.currentGameIsUntouchedFeedback()
   }
@@ -32,7 +32,7 @@ const onGameCellClick = function (event) {
       store.winner = gameLogic.decideWinState(game)
       api.updateGame(game, cell)
         .then(ui.updateGameSuccess)
-        .catch(ui.failure)
+        .catch(ui.updateGameFailure)
       ui.fadeInResetGameButton()
     } else if (!game.over) {
       ui.cellOccupiedAlert(event.target.id)

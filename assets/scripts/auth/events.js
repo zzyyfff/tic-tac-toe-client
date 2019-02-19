@@ -9,7 +9,7 @@ const onSignUp = function (event) {
   const formData = getFormFields(event.target)
   api.signUp(formData)
     .then(ui.signUpSuccess)
-    .catch(ui.failure)
+    .catch(ui.signUpFailure)
 }
 
 const onSignIn = function (event) {
@@ -32,7 +32,7 @@ const onSignOut = function (event) {
   event.preventDefault()
   api.signOut()
     .then(ui.signOutSuccess)
-    .catch(ui.failure)
+    .catch(ui.signOutFailure)
 }
 
 const onRegisterReveal = function (event) {

@@ -67,6 +67,14 @@ const signInFailure = function (responseData) {
   createFeedback(`Incorrect username or password; please try again.`, 4000)
 }
 
+const signUpFailure = function (responseData) {
+  createFeedback(`Sign up failure; please try again.`, 4000)
+}
+
+const signOutFailure = function (responseData) {
+  createFeedback(`Sign out failure; please try again.`, 4000)
+}
+
 const fadeOutSignIn = function () {
   $('.sign-in-div').fadeOut(300)
 }
@@ -101,11 +109,13 @@ const resetPassChangeForm = function (form) {
 
 module.exports = {
   signUpSuccess,
+  signUpFailure,
   signInSuccess,
   signInFailure,
   changePasswordSuccess,
   changePasswordFailure,
   signOutSuccess,
+  signOutFailure,
   createFeedback,
   fadeOutSignIn,
   fadeInSignIn,

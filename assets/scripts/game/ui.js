@@ -161,6 +161,14 @@ const failure = function (responseData) {
   createFeedback(`Someting went wrong; please try again.`, 4000)
 }
 
+const updateGameFailure = function (responseData) {
+  createFeedback(`Failure to update game; please try again.`, 4000)
+}
+
+const newGameFailure = function (responseData) {
+  createFeedback(`Failure to create new game; please try again.`, 4000)
+}
+
 module.exports = {
   cellOccupiedAlert,
   currentGameIsUntouchedFeedback,
@@ -169,7 +177,9 @@ module.exports = {
   renderGame,
   renderBoard,
   newGameSuccess,
+  newGameFailure,
   updateGameSuccess,
+  updateGameFailure,
   getCompletedGamesSuccess,
   createFeedback,
   updateStats,
