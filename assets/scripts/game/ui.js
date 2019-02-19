@@ -98,6 +98,7 @@ const createFeedback = function (feedbackText, alertStyle, delay) {
 const fixSquares = () => {
   const cellWidth = $('.square').width()
   $('.square').css({'height': cellWidth + 'px'})
+  $('.game-cell').css({'font-size': cellWidth})
 }
 
 const renderGame = function (game, winner) {
