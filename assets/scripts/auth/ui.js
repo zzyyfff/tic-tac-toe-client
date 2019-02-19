@@ -15,6 +15,7 @@ const createFeedback = function (feedbackText, delay) {
 
 const signUpSuccess = function (responseData) {
   createFeedback('Sign-up successfull.', 3000)
+  resetAllForms()
   fadeInSignIn()
 }
 
@@ -26,18 +27,20 @@ const signInSuccess = function (responseData) {
   gameUi.updateStats()
   fadeInWelcome()
   fadeOutAuth()
+  resetAllForms()
 }
 
 const changePasswordSuccess = function (responseData) {
   $('#formModalCenter').modal('hide')
   createFeedback(`Successfully changed password.`, 3000)
-
+  resetAllForms()
   $('#pass-change-help').removeClass('small-error')
   $('#pass-change-help').addClass('muted')
   $('#pass-change-help').html(`Enter both your old and new passwords to make the change.<br>&nbsp;`)
 }
 
 const changePasswordFailure = function (responseData) {
+  resetAllForms()
   $('#pass-change-help').removeClass('muted')
   $('#pass-change-help').addClass('small-error')
   $('#pass-change-help').html(`Incorrect Entry. Please enter your correct old and new passwords to make the change.<br>&nbsp;`)
@@ -48,6 +51,7 @@ const signOutSuccess = function (responseData) {
   fadeOutWelcome()
   gameUi.fadeOutResetGameButton()
   gameUi.fadeOutGameStatus()
+  resetAllForms()
   fadeInAuth()
   $('#start-game-button').html('Start A New Game!')
   setTimeout(gameUi.fadeInNewGameButton, 310)
@@ -64,11 +68,13 @@ const failure = function (responseData) {
 }
 
 const signInFailure = function (responseData) {
+  resetAllForms()
   createFeedback(`Incorrect username or password; please try again.`, 4000)
 }
 
 const signUpFailure = function (responseData) {
-  createFeedback(`Username already taken; please try again.`, 4000)
+  resetAllForms()
+  createFeedback(`Username already taken or passwords do not patch; please try again.`, 4000)
 }
 
 const signOutFailure = function (responseData) {
@@ -105,6 +111,10 @@ const resetPassChangeForm = function (form) {
   $('#pass-change-help').removeClass('red')
   $('#pass-change-help').addClass('muted')
   $('#pass-change-help').html(`Enter both your old and new passwords to make the change.<br>&nbsp;`)
+}
+
+const resetAllForms = function () {
+  $('form').find('input:text, input:password, input:file, select, textarea').val('')
 }
 
 module.exports = {
