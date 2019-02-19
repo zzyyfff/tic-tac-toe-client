@@ -78,7 +78,8 @@ const signUpFailure = function (responseData) {
 }
 
 const signOutFailure = function (responseData) {
-  createFeedback(`Sign out failure; please try again.`, 4000)
+  createFeedback(`Sign out failure; please sign-in again.`, 4000)
+  signOutSuccess()
 }
 
 const fadeOutSignIn = function () {
