@@ -68,7 +68,7 @@ const signInFailure = function (responseData) {
 }
 
 const signUpFailure = function (responseData) {
-  createFeedback(`Sign up failure; please try again.`, 4000)
+  createFeedback(`Username already taken; please try again.`, 4000)
 }
 
 const signOutFailure = function (responseData) {
