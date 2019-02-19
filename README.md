@@ -40,18 +40,18 @@ This project is born of the Software Engineering Immersive course at General Ass
 
 #### My Process
 
-1.  [x] Consider and brainstorm on the mission and goals of the project, based on the project requirements.
-2.  [x] Perform user research; talking to potential users about what they would look for in a Tic Tac Toe game, what they would need or want from it, and what might cause a given version of Tic Tac toe to stand out and be desireable.
-3.  [x] List out the functionality of an [MVP](https://en.wikipedia.org/wiki/Minimum_viable_product) and separately bucket future functionality that would not be part of the [MVP](https://en.wikipedia.org/wiki/Minimum_viable_product).
-4.  [x] Draw up wireframes and settle on an initial interface design goal. The final interface will change through user testing and redesign. (*See wireframe images below*)
-5.  [x] Create user stories (*See example user stories below*)
-6.  [x] Prioritize user stories, putting the ones with the most dependents first
-7.  [x] Create the basic layout of UI elements in HTML/CSS/SASS/Bootstrap, using semantic tags when possible and only enough styling to meet [MVP](https://en.wikipedia.org/wiki/Minimum_viable_product) layout needs.
-8.  [x] Work on functional elements with local gameplay logic first, then authentication and game API.
-9.  [x] Test, troubleshoot, debug, refactor, and confirm working deployment.
-10.  [x] If there is enough time, begin work on stretch goal features and test them in deployment
-11.  [x] Fill in README.md
-12.  [x] Once all base functionality is established, apply aesthetic style
+1. Consider and brainstorm on the mission and goals of the project, based on the project requirements.
+2. Perform user research; talking to potential users about what they would look for in a Tic Tac Toe game, what they would need or want from it, and what might cause a given version of Tic Tac toe to stand out and be desireable.
+3. List out the functionality of an [MVP](https://en.wikipedia.org/wiki/Minimum_viable_product) and separately bucket future functionality that would not be part of the [MVP](https://en.wikipedia.org/wiki/Minimum_viable_product).
+4. Draw up wireframes and settle on an initial interface design goal. The final interface will change through user testing and redesign. (*See wireframe images below*)
+5. Create user stories (*See example user stories below*)
+6. Prioritize user stories, putting the ones with the most dependents first
+7. Create the basic layout of UI elements in HTML/CSS/SASS/Bootstrap, using semantic tags when possible and only enough styling to meet [MVP](https://en.wikipedia.org/wiki/Minimum_viable_product) layout needs.
+8. Work on functional elements with local gameplay logic first, then authentication and game API.
+9. Test, troubleshoot, debug, refactor, and confirm working deployment.
+10. If there is enough time, begin work on stretch goal features and test them in deployment
+11. Fill in README.md
+12. Once all base functionality is established, apply aesthetic style
 
 #### Initial wireframes and user stories
 ##### [Mobile wireframe](https://i.imgur.com/b68mnCm.jpg "Tic Tac Toe - mobile wireframe")
