@@ -15,7 +15,7 @@ Simply go to https://zzyyfff.github.io/tic-tac-toe-client/, sign up, and sign in
 
 ## Getting involved
 
-If you're interested in playing with the code or contributing? Read on.
+Interested in playing with the code or contributing? Read on.
 
 #### Prerequisites
 
@@ -36,7 +36,7 @@ If you're interested in playing with the code or contributing? Read on.
 
 ## Planning and Development
 
-This project is born of the Software Engineering Immersive course at General Assembly Boston and is my first foray into web development.
+This project is born out of the Software Engineering Immersive course at General Assembly Boston (formerly the WDI, Web Development Immersive) and is my first foray into web development.
 
 #### My Process
 
@@ -71,7 +71,19 @@ Finally, if an answer hasn't been found, I create a showcase of the problem, inc
 
 + Height is not constrained on landscape-mode mobile devices
 + Scaling of the interface should be rewritten to fit all contexts
-+ Aesthetics could use some work to look more solid, clean, and appealing
++ Aesthetics could use some work in order to look more solid, clean, and appealing
+
+## Future Direction
+
+Possible features and directions this project could go:
++ Board dimensions other than 3x3, with a win condintion of `n`-in-a-row for an `n`x`n` board
++ 3-dimensional, cubic, play area (3x3x3)
++ 4-dimensional, hypercubic, play area (3x3x3x3)
++ "*Ultimate Tic Tac Toe*," where each cell contains a smaller, nested tic-tac-toe board, whoes winner gets to mark the parent cell
++ Sonic feedback
++ Multi-player / Multi-device gameplay
++ Integrated messaging between users
++ Aesthetic and interactive redesign, in collaboration with a trained designer
 
 ## [License](LICENSE)
 
