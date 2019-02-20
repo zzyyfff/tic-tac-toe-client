@@ -40,10 +40,16 @@ const changePasswordSuccess = function (responseData) {
 }
 
 const changePasswordFailure = function (responseData) {
-  resetAllForms()
-  $('#pass-change-help').removeClass('muted')
-  $('#pass-change-help').addClass('small-error')
-  $('#pass-change-help').html(`Incorrect Entry. Please enter your correct old and new passwords to make the change.<br>&nbsp;`)
+  if (responseData.responseText.includes('HTTP Token: Access denied')) {
+    createFeedback(`Your account is signed in on another device. Please sign in again.[Bad token on Password Change]`, 5000)
+    signOutSuccess()
+    $('#formModalCenter').modal('hide')
+  } else {
+    resetAllForms()
+    $('#pass-change-help').removeClass('muted')
+    $('#pass-change-help').addClass('small-error')
+    $('#pass-change-help').html(`Incorrect Entry. Please enter your correct old and new passwords to make the change.<br>&nbsp;`)
+  }
 }
 
 const signOutSuccess = function (responseData) {
