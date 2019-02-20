@@ -3,7 +3,6 @@
 const store = require('../store')
 const gameLogic = require('./game-logic')
 const api = require('./api')
-const authUi = require('../auth/ui')
 
 const cellOccupiedAlert = function (cellId) {
   cellFeedback(cellId, 3000)
@@ -87,12 +86,21 @@ const cellFeedback = function (cellId, delay) {
   }, delay)
 }
 
-const createFeedback = function (feedbackText, alertStyle, delay) {
+const createFeedback = function (feedbackText, delay) {
   $('.game-status').html(feedbackText)
   $('.game-status').fadeIn(300)
 
   setTimeout(() => {
     $('.game-status').fadeOut(300)
+  }, delay)
+}
+
+const createAuthFeedback = function (feedbackText, delay) {
+  $('.auth-status').html(feedbackText)
+  $('.auth-status').fadeIn(300)
+
+  setTimeout(() => {
+    $('.auth-status').fadeOut(300)
   }, delay)
 }
 
@@ -163,12 +171,33 @@ const failure = function (responseData) {
 }
 
 const updateGameFailure = function (responseData) {
-  authUi.signOutSuccess()
-  createFeedback(`You account is signed in on another device; please sign in again.`, 4000)
+  kickToSignIn()
+  createAuthFeedback(`Your account is signed in on another device. Please sign in again. [Update game failure]`, 5000)
 }
 
 const newGameFailure = function (responseData) {
-  createFeedback(`Failure to create new game; please try again.`, 4000)
+  kickToSignIn()
+  createAuthFeedback(`Your account is signed in on another device. Please sign in again.[Create game failure]`, 5000)
+}
+
+const kickToSignIn = function () {
+  store.user = null
+  // fadeOutWelcome
+  $('.welclome-dropdown').fadeOut(300)
+  fadeOutResetGameButton()
+  fadeOutGameStatus()
+  // resetAllForms
+  $('form').find('input:text, input:password, input:file, select, textarea').val('')
+  // fadeInAuth
+  $('.initial-auth-form').fadeIn(300)
+  $('#start-game-button').html('Start A New Game!')
+  setTimeout(fadeInNewGameButton, 310)
+
+  // reset board with blank game
+  const game = new gameLogic.Game(0, 0, 'dummy@game')
+  renderBoard(game)
+  store.game = null
+  store.readyToAcceptNewGame = true
 }
 
 module.exports = {
