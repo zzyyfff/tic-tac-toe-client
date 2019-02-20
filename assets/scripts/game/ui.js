@@ -3,6 +3,7 @@
 const store = require('../store')
 const gameLogic = require('./game-logic')
 const api = require('./api')
+const authUi = require('../auth/ui')
 
 const cellOccupiedAlert = function (cellId) {
   cellFeedback(cellId, 3000)
@@ -162,7 +163,8 @@ const failure = function (responseData) {
 }
 
 const updateGameFailure = function (responseData) {
-  createFeedback(`Failure to update game; please try again.`, 4000)
+  authUi.signOutSuccess()
+  createFeedback(`You account is signed in on another device; please sign in again.`, 4000)
 }
 
 const newGameFailure = function (responseData) {
