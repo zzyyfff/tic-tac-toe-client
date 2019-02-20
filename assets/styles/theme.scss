@@ -11,7 +11,6 @@ $grey-out-game-color: $charcoal-grey-color;
     width: 768px;
   }
 }
-
 @media (orientation: landscape) {
   .game-board {
     width: 100vmin;
@@ -31,8 +30,9 @@ $grey-out-game-color: $charcoal-grey-color;
   top: 0 !important;
 }
 
-.testing-border {
-  border: dotted $testing-blue 1px;
+.canvas {
+  box-shadow: inset 0 0 100px $testing-black;
+  content: '';
 }
 
 .dropdown-toggle {
@@ -125,7 +125,7 @@ $grey-out-game-color: $charcoal-grey-color;
   display: flex;
   height: 100%;
   justify-content: center;
-  padding: .375rem .75rem;
+  padding: 0.375rem 0.75rem;
   width: 100%;
 }
 
@@ -199,7 +199,29 @@ $grey-out-game-color: $charcoal-grey-color;
 .arrow,
 .tooltip,
 .tooltip-inner {
-  opacity: .9;
+  opacity: 0.9;
+}
+
+.plead-wrap {
+  align-items: center;
+  color: $paper-white-color;
+  display: flex;
+  font-size: 5rem;
+  justify-content: center;
+  left: 0;
+  position: absolute;
+  top: 0;
+  z-index: 300;
+}
+
+.tvstatic {
+  display: none;
+  height: 100%;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  z-index: 200;
 }
 
 .welclome-dropdown {

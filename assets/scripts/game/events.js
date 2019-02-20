@@ -4,7 +4,9 @@ const ui = require('./ui')
 const api = require('./api')
 const gameLogic = require('./game-logic')
 const store = require('../store')
+const tvStatic = require('../static/tv-static')
 store.readyToAcceptNewGame = true
+store.invalidClickCounter = 0
 
 const onStartNewGame = function () {
   if (store.readyToAcceptNewGame) {
@@ -35,7 +37,14 @@ const onGameCellClick = function (event) {
         .catch(ui.updateGameFailure)
       ui.fadeInResetGameButton()
     } else if (!game.over) {
-      ui.cellOccupiedAlert(event.target.id)
+      if (store.invalidClickCounter > 20) {
+        tvStatic.fadeInStatic()
+        setTimeout(tvStatic.fadeOutStatic, 5000)
+        store.invalidClickCounter = 0
+      } else {
+        ui.cellOccupiedAlert(event.target.id)
+        store.invalidClickCounter++
+      }
     } else {
       ui.gameOver()
     }

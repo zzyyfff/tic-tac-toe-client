@@ -8,9 +8,11 @@
 
 const authEvents = require('./auth/events')
 const gameEvents = require('./game/events')
+const staticEvents = require('./static/tv-static')
 
 $(() => {
   authEvents.addHandlers()
   gameEvents.addHandlers()
   $('[data-toggle="tooltip"]').tooltip()
+  staticEvents.addHandlers()
 })
