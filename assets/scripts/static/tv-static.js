@@ -84,13 +84,9 @@ const fadeOutStatic = function () {
   $('.tvstatic').fadeOut(1000)
 }
 
-const addHandlers = () => {
-  $(document).ready(initialize)
-  $(window).resize(resize)
-}
-
 module.exports = {
-  addHandlers,
   fadeInStatic,
-  fadeOutStatic
+  fadeOutStatic,
+  initialize,
+  resize
 }

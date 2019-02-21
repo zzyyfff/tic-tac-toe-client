@@ -56,6 +56,8 @@ const addHandlers = () => {
   $(document).ready(ui.fixSquares)
   $('.game-cell').on('click', onGameCellClick)
   $('.reset-game').on('click', onStartNewGame)
+  $(document).ready(tvStatic.initialize)
+  $(window).resize(tvStatic.resize)
 }
 
 module.exports = {
