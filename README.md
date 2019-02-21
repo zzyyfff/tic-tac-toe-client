@@ -1,6 +1,6 @@
 # Tic Tac Toe!
 
-A online version of the class tic tac toe game! Play against someone at the same terminal or play against yourself! Sign up and sign in are required to play; win detection and game statistis are provided for you.
+A online version of the class tic tac toe game! Play against someone at the same terminal or play against yourself! Sign up and sign in are required to play; win detection and game statistics are provided for you.
 
 ## Getting Started
 
