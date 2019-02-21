@@ -30,10 +30,6 @@ $grey-out-game-color: $charcoal-grey-color;
   top: 0 !important;
 }
 
-body {
-  user-select: none;
-}
-
 .canvas {
   box-shadow: inset 0 0 100px $testing-black;
   content: '';
@@ -122,6 +118,7 @@ body {
   display: flex;
   justify-content: center;
   overflow: hidden;
+  user-select: none;
 }
 
 .game-status {
@@ -216,6 +213,7 @@ body {
   left: 0;
   position: absolute;
   top: 0;
+  user-select: none;
   width: 100%;
   z-index: 300;
 
