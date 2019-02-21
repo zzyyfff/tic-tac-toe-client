@@ -30,6 +30,10 @@ $grey-out-game-color: $charcoal-grey-color;
   top: 0 !important;
 }
 
+body {
+  user-select: none;
+}
+
 .canvas {
   box-shadow: inset 0 0 100px $testing-black;
   content: '';
